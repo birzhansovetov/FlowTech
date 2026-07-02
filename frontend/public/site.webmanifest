@@ -1,0 +1,9 @@
+{
+  "name": "FlowTech",
+  "short_name": "FlowTech",
+  "description": "AI, Web & Mobile Development",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070b14",
+  "theme_color": "#20D3FF"
+}

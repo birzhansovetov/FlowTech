@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --page-bg: #070b14;
+  --page-text: #f8fafc;
+  --muted-text: #cbd5e1;
+  --soft-text: #94a3b8;
+  --panel-bg: rgba(255, 255, 255, 0.05);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --header-bg: rgba(7, 11, 20, 0.72);
+  --grid-line: rgba(255, 255, 255, 0.055);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page-bg: #f6f8fc;
+  --page-text: #07111f;
+  --muted-text: #334155;
+  --soft-text: #64748b;
+  --panel-bg: rgba(255, 255, 255, 0.78);
+  --panel-border: rgba(15, 23, 42, 0.1);
+  --header-bg: rgba(255, 255, 255, 0.82);
+  --grid-line: rgba(15, 23, 42, 0.07);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--page-text);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+::selection {
+  background: rgba(32, 211, 255, 0.35);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 88%);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #ffffff 0%, #8be9ff 46%, #b79cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.22);
+  backdrop-filter: blur(18px);
+}
+
+.noise::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0);
+  background-size: 24px 24px;
+  z-index: 9999;
+}
+
+.theme-logo-light {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-logo-dark {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-logo-light {
+  display: block;
+}
+
+.theme-header {
+  background: var(--header-bg);
+  border-color: var(--panel-border);
+}
+
+:root[data-theme="light"] .glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.72));
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme="light"] .gradient-text {
+  background: linear-gradient(90deg, #003763 0%, #0479a8 45%, #7253d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+:root[data-theme="light"] .bg-ink {
+  background-color: var(--page-bg);
+}
+
+:root[data-theme="light"] .text-white,
+:root[data-theme="light"] .text-slate-100,
+:root[data-theme="light"] .text-slate-200 {
+  color: #07111f;
+}
+
+:root[data-theme="light"] .text-slate-300 {
+  color: var(--muted-text);
+}
+
+:root[data-theme="light"] .text-slate-400,
+:root[data-theme="light"] .text-slate-500 {
+  color: var(--soft-text);
+}
+
+:root[data-theme="light"] .border-white\/10,
+:root[data-theme="light"] .border-white\/15 {
+  border-color: var(--panel-border);
+}
+
+:root[data-theme="light"] .bg-white\/5,
+:root[data-theme="light"] .bg-white\/\[0\.04\],
+:root[data-theme="light"] .bg-white\/\[0\.05\],
+:root[data-theme="light"] .bg-white\/\[0\.06\],
+:root[data-theme="light"] .bg-white\/10 {
+  background-color: var(--panel-bg);
+}
+
+:root[data-theme="light"] .bg-\[\#08111f\],
+:root[data-theme="light"] .bg-\[\#101827\] {
+  background-color: #ffffff;
+}
+
+:root[data-theme="light"] input,
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] select {
+  color: #07111f;
+}
+
+:root[data-theme="light"] input::placeholder,
+:root[data-theme="light"] textarea::placeholder {
+  color: #94a3b8;
+}
+
+:root[data-theme="light"] .hover\:text-white:hover {
+  color: #003763;
+}
+
+:root[data-theme="light"] .hover\:bg-white\/10:hover {
+  background-color: rgba(15, 23, 42, 0.08);
+}
+
+:root[data-theme="light"] .bg-black\/25 {
+  background-color: rgba(15, 23, 42, 0.08);
+}
+
+:root[data-theme="light"] .text-white\/85 {
+  color: #334155;
+}
+
+:root[data-theme="light"] .text-white\/20 {
+  color: rgba(15, 23, 42, 0.18);
+}
+
+:root[data-theme="light"] .noise::before {
+  opacity: 0.025;
+  background-image: radial-gradient(circle at 1px 1px, #0f172a 1px, transparent 0);
+}

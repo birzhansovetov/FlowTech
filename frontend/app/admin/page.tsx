@@ -1,0 +1,100 @@
+"use client";
+
+import { useState } from "react";
+import { dictionaries, defaultLocale, type Dictionary, type Locale } from "@/lib/i18n";
+
+type Lead = {
+  id: number;
+  name: string;
+  contact: string;
+  project_type: string;
+  budget?: string | null;
+  message: string;
+  status: string;
+  created_at: string;
+};
+
+export default function AdminPage() {
+  const dict: Dictionary = dictionaries[defaultLocale];
+  const locale: Locale = defaultLocale;
+  const [apiKey, setApiKey] = useState("");
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [error, setError] = useState("");
+
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+  async function loadLeads() {
+    setError("");
+
+    try {
+      const response = await fetch(`${apiUrl}/api/admin/leads`, {
+        headers: {
+          "x-admin-api-key": apiKey
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Unauthorized");
+      }
+
+      setLeads(await response.json());
+    } catch {
+      setError(dict.admin.loadError);
+    }
+  }
+
+  return (
+    <main className="min-h-screen bg-ink px-5 py-12 text-white lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <h1 className="text-4xl font-semibold tracking-[-0.03em]">{dict.admin.title}</h1>
+        <p className="mt-3 text-slate-300">{dict.admin.description}</p>
+
+        <div className="mt-8 flex gap-3">
+          <input
+            type="password"
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+            className="flex-1 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-4 outline-none"
+            placeholder={dict.admin.apiKeyPlaceholder}
+          />
+          <button onClick={loadLeads} className="rounded-2xl bg-white px-6 py-4 font-semibold text-ink">
+            {dict.admin.loadButton}
+          </button>
+        </div>
+
+        {error ? <p className="mt-4 text-red-300">{error}</p> : null}
+
+        <div className="mt-8 overflow-hidden rounded-[2rem] border border-white/10">
+          <table className="w-full min-w-[900px] border-collapse text-left text-sm">
+            <thead className="bg-white/10 text-slate-200">
+              <tr>
+                <th className="p-4">Дата</th>
+                <th className="p-4">Имя</th>
+                <th className="p-4">Контакт</th>
+                <th className="p-4">Проект</th>
+                <th className="p-4">Бюджет</th>
+                <th className="p-4">Сообщение</th>
+                <th className="p-4">Статус</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leads.map((lead) => (
+                <tr key={lead.id} className="border-t border-white/10 align-top">
+                  <td className="p-4 text-slate-400">
+                    {new Date(lead.created_at).toLocaleString()}
+                  </td>
+                  <td className="p-4">{lead.name}</td>
+                  <td className="p-4">{lead.contact}</td>
+                  <td className="p-4">{lead.project_type}</td>
+                  <td className="p-4">{lead.budget || "—"}</td>
+                  <td className="p-4 text-slate-300">{lead.message}</td>
+                  <td className="p-4">{lead.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  );
+}
