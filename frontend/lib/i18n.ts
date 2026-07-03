@@ -50,9 +50,9 @@ const baseDictionaries = {
     },
     hero: {
       badge: "AI • Web • Mobile • Automation",
-      title: "Создаем AI-решения, веб и мобильные продукты для роста бизнеса",
+      title: "Находим, где бизнес теряет время, и превращаем это в AI-системы",
       text:
-        "Разрабатываем цифровые продукты под реальные задачи: автоматизация заявок, AI-ассистенты, CRM, веб-платформы, мобильные приложения и интеграции с бизнес-сервисами.",
+        "Мы не просто делаем сайты. Мы строим системы, которые принимают заявки, квалифицируют клиентов, автоматизируют ручную работу и двигают бизнес вперед.",
       consultButton: "Получить консультацию",
       projectsButton: "Смотреть проекты",
       features: ["MVP", "AI-интеграции", "Поддержка"],
@@ -367,9 +367,9 @@ const baseDictionaries = {
     },
     hero: {
       badge: "AI • Web • Mobile • Automation",
-      title: "We build AI solutions, web and mobile products for business growth",
+      title: "We find where business loses time and turn it into AI systems",
       text:
-        "We develop digital products for real tasks: lead automation, AI assistants, CRM, web platforms, mobile apps and business-service integrations.",
+        "We do not build just websites. We build systems that capture leads, qualify clients, automate manual work and move the business forward.",
       consultButton: "Get consultation",
       projectsButton: "View projects",
       features: ["MVP", "AI integrations", "Support"],
@@ -687,9 +687,9 @@ const kkDictionary = {
   },
   hero: {
     ...baseDictionaries.ru.hero,
-    title: "Бизнес өсімі үшін AI-шешімдер, веб және мобильді өнімдер жасаймыз",
+    title: "Бизнес уақытты қайда жоғалтатынын тауып, оны AI-жүйеге айналдырамыз",
     text:
-      "Нақты бизнес міндеттеріне арналған цифрлық өнімдер әзірлейміз: өтінімдерді автоматтандыру, AI-ассистенттер, CRM, веб-платформалар, мобильді қосымшалар және бизнес-сервистермен интеграциялар.",
+      "Біз жай сайт жасамаймыз. Біз өтінім қабылдайтын, клиенттерді квалификациялайтын, қол жұмысын автоматтандыратын және бизнесті алға жылжытатын жүйелер құрамыз.",
     consultButton: "Кеңес алу",
     projectsButton: "Жобаларды көру",
     features: ["MVP", "AI-интеграциялар", "Қолдау"],

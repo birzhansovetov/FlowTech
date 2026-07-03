@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Industries } from "@/components/Industries";
+import { InteractiveSystems } from "@/components/InteractiveSystems";
 import { Process } from "@/components/Process";
 import { Projects } from "@/components/Projects";
 import { Services } from "@/components/Services";
@@ -19,6 +20,7 @@ export default function Home() {
     <main>
       <Header locale={locale} dict={dict} currentPath="/" />
       <Hero locale={locale} dict={dict} />
+      <InteractiveSystems locale={locale} />
       <Services locale={locale} dict={dict} />
       <Industries dict={dict} />
       <Technology dict={dict} />
