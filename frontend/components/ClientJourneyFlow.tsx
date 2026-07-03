@@ -54,12 +54,12 @@ export function ClientJourneyFlow({ locale }: { locale: Locale }) {
           <p className="mt-5 text-lg leading-8 text-slate-300">{t.text}</p>
         </div>
 
-        <div className="glass-card grid gap-4 rounded-[2rem] p-5 lg:grid-cols-5">
+        <div className="command-panel grid gap-4 p-5 lg:grid-cols-5">
           {t.steps.map((step, index) => {
             const Icon = icons[index];
 
             return (
-              <div key={step} className="relative rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
+              <div key={step} className="relative rounded-xl border border-white/10 bg-white/[0.04] p-5">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-accent">
                   <Icon size={24} />
                 </div>

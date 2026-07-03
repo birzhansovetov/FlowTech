@@ -4,26 +4,30 @@
 
 :root {
   color-scheme: dark;
-  --page-bg: #070b14;
+  --page-bg: #05070d;
   --page-text: #f8fafc;
-  --muted-text: #cbd5e1;
-  --soft-text: #94a3b8;
-  --panel-bg: rgba(255, 255, 255, 0.05);
-  --panel-border: rgba(255, 255, 255, 0.1);
-  --header-bg: rgba(7, 11, 20, 0.72);
-  --grid-line: rgba(255, 255, 255, 0.055);
+  --muted-text: #b6c3d1;
+  --soft-text: #748296;
+  --panel-bg: rgba(9, 14, 24, 0.82);
+  --panel-strong: rgba(12, 20, 34, 0.96);
+  --panel-border: rgba(148, 163, 184, 0.18);
+  --header-bg: rgba(5, 7, 13, 0.84);
+  --grid-line: rgba(32, 211, 255, 0.08);
+  --accent-soft: rgba(32, 211, 255, 0.12);
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --page-bg: #f6f8fc;
-  --page-text: #07111f;
+  --page-bg: #f4f7fb;
+  --page-text: #07101f;
   --muted-text: #334155;
   --soft-text: #64748b;
-  --panel-bg: rgba(255, 255, 255, 0.78);
-  --panel-border: rgba(15, 23, 42, 0.1);
-  --header-bg: rgba(255, 255, 255, 0.82);
-  --grid-line: rgba(15, 23, 42, 0.07);
+  --panel-bg: rgba(255, 255, 255, 0.86);
+  --panel-strong: rgba(255, 255, 255, 0.96);
+  --panel-border: rgba(15, 23, 42, 0.12);
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --grid-line: rgba(0, 55, 99, 0.08);
+  --accent-soft: rgba(0, 55, 99, 0.08);
 }
 
 html {
@@ -32,7 +36,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--page-bg);
+  background:
+    radial-gradient(circle at 16% 8%, rgba(32, 211, 255, 0.12), transparent 28%),
+    radial-gradient(circle at 84% 4%, rgba(139, 92, 246, 0.12), transparent 26%),
+    linear-gradient(180deg, var(--page-bg) 0%, #070a12 58%, #05070d 100%);
   color: var(--page-text);
   transition: background-color 180ms ease, color 180ms ease;
 }
@@ -50,17 +57,47 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #ffffff 0%, #8be9ff 46%, #b79cff 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #58dcff 42%, #73f3b5 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .glass-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025)),
+    var(--panel-bg);
   border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.26);
+  backdrop-filter: blur(20px);
+}
+
+.command-panel {
+  background: var(--panel-strong);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
   box-shadow: 0 24px 80px rgba(0,0,0,0.22);
-  backdrop-filter: blur(18px);
+}
+
+.command-strip {
+  background: linear-gradient(90deg, rgba(32, 211, 255, 0.12), rgba(115, 243, 181, 0.08));
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+}
+
+.status-dot {
+  display: inline-flex;
+  height: 8px;
+  width: 8px;
+  border-radius: 999px;
+  background: #20d3ff;
+  box-shadow: 0 0 18px rgba(32, 211, 255, 0.72);
+}
+
+.system-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(32, 211, 255, 0.36), transparent);
 }
 
 .noise::before {
@@ -89,10 +126,13 @@ body {
 .theme-header {
   background: var(--header-bg);
   border-color: var(--panel-border);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
 }
 
 :root[data-theme="light"] .glass-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.72));
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.78)),
+    var(--panel-bg);
   box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
 }
 
@@ -173,4 +213,31 @@ body {
 :root[data-theme="light"] .noise::before {
   opacity: 0.025;
   background-image: radial-gradient(circle at 1px 1px, #0f172a 1px, transparent 0);
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 16% 8%, rgba(0, 55, 99, 0.1), transparent 28%),
+    radial-gradient(circle at 84% 4%, rgba(32, 211, 255, 0.12), transparent 26%),
+    linear-gradient(180deg, var(--page-bg) 0%, #eef3f8 100%);
+}
+
+:root[data-theme="light"] .command-panel {
+  background: var(--panel-strong);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+}
+
+.rounded-\[2rem\],
+.rounded-\[2\.5rem\],
+.rounded-\[1\.75rem\],
+.rounded-\[1\.5rem\] {
+  border-radius: 14px;
+}
+
+.rounded-3xl {
+  border-radius: 12px;
+}
+
+.rounded-2xl {
+  border-radius: 10px;
 }

@@ -408,14 +408,26 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
   return (
     <section className="px-5 py-24 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 max-w-4xl">
+        <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-4xl">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-accent">{t.eyebrow}</p>
           <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white md:text-5xl">{t.title}</h2>
           <p className="mt-5 text-lg leading-8 text-slate-300">{t.text}</p>
+          </div>
+          <div className="command-strip flex w-full gap-1 p-1 text-xs font-semibold text-slate-300 sm:w-auto">
+            {["Scanner", "Builder", "Roadmap", "Score"].map((item, index) => (
+              <span
+                key={item}
+                className={`rounded-full px-3 py-2 ${index === 0 ? "bg-white text-ink" : ""}`}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
-          <div className="glass-card rounded-[2rem] p-6">
+          <div className="command-panel p-6">
             <div className="mb-6 flex items-start gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-accent">
                 <Bot size={24} />
@@ -468,7 +480,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-[#08111f] p-5">
+            <div className="mt-6 rounded-xl border border-white/10 bg-[#08111f] p-5">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
                 {t.scanner.recommended}
               </p>
@@ -494,7 +506,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
             </div>
 
             <div className="mt-4 grid gap-4 xl:grid-cols-2">
-              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
+              <div className="rounded-xl border border-white/10 bg-white/[0.04] p-5">
                 <div className="mb-4 flex items-center gap-3">
                   <Route className="text-accent" size={22} />
                   <h4 className="text-lg font-semibold">{t.roadmap.title}</h4>
@@ -509,7 +521,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
                 </div>
               </div>
 
-              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
+              <div className="rounded-xl border border-white/10 bg-white/[0.04] p-5">
                 <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
                   {t.plan.title}
                 </p>
@@ -522,7 +534,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <div className="glass-card rounded-[2rem] p-6">
+          <div className="command-panel p-6">
             <div className="mb-6 flex items-start gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-accent">
                 <Workflow size={24} />
@@ -553,7 +565,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
               })}
             </div>
 
-            <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
+            <div className="mt-6 rounded-xl border border-white/10 bg-white/[0.04] p-5">
               <p className="text-sm text-slate-400">{t.builder.solution}</p>
               <h4 className="mt-2 text-2xl font-semibold">AI Lead System</h4>
               <div className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
@@ -569,7 +581,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
         </div>
 
         <div className="mt-6 grid gap-6 lg:grid-cols-[.95fr_1.05fr]">
-          <div className="glass-card rounded-[2rem] p-6">
+          <div className="command-panel p-6">
             <div className="mb-6 flex items-center gap-4">
               <MessageSquareText className="text-accent" size={28} />
               <h3 className="text-2xl font-semibold">{t.beforeAfter.title}</h3>
@@ -580,7 +592,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <div className="glass-card rounded-[2rem] p-6">
+          <div className="command-panel p-6">
             <div className="mb-6 flex items-start gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-accent">
                 <Gauge size={24} />
@@ -607,7 +619,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
         </div>
 
         <div className="mt-6 grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
-          <div className="glass-card overflow-hidden rounded-[2rem] p-6">
+          <div className="command-panel overflow-hidden p-6">
             <div className="mb-6 flex items-start gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-accent">
                 <Activity size={24} />
@@ -618,7 +630,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            <div className="rounded-[1.5rem] border border-white/10 bg-[#08111f] p-5 font-mono text-sm">
+            <div className="rounded-xl border border-white/10 bg-[#08111f] p-5 font-mono text-sm">
               {t.live.events.map((event, index) => (
                 <div
                   key={event}
@@ -631,7 +643,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <div className="glass-card rounded-[2rem] p-6">
+          <div className="command-panel p-6">
             <div className="mb-6 flex items-start gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-accent">
                 <Layers3 size={24} />
