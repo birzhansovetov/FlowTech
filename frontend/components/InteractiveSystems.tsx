@@ -33,7 +33,8 @@ const content = {
       industries: ["Beauty / wellness", "Education", "E-commerce", "B2B service"],
       pains: ["WhatsApp хаос", "Нет CRM", "Медленный ответ", "Нет аналитики"],
       recommended: "Recommended system",
-      roadmap: "Получить roadmap внедрения"
+      roadmap: "Отправить этот roadmap нам",
+      copy: "Скопировать roadmap"
     },
     builder: {
       title: "Build Your System",
@@ -84,6 +85,12 @@ const content = {
         "Week 5 — Testing & Launch"
       ]
     },
+    plan: {
+      title: "Ваш персональный план",
+      modules: "Что внедряем",
+      copied: "Roadmap скопирован",
+      saved: "Roadmap добавлен в форму ниже"
+    },
     live: {
       title: "Live Automation Preview",
       text: "Как система работает после внедрения: от первого сообщения до CRM и follow-up.",
@@ -120,7 +127,8 @@ const content = {
       industries: ["Beauty / wellness", "Education", "E-commerce", "B2B service"],
       pains: ["WhatsApp хаосы", "CRM жоқ", "Жауап баяу", "Аналитика жоқ"],
       recommended: "Ұсынылатын жүйе",
-      roadmap: "Енгізу roadmap алу"
+      roadmap: "Осы roadmap-ты жіберу",
+      copy: "Roadmap көшіру"
     },
     builder: {
       title: "Build Your System",
@@ -171,6 +179,12 @@ const content = {
         "Week 5 — Testing & Launch"
       ]
     },
+    plan: {
+      title: "Сіздің жеке жоспарыңыз",
+      modules: "Не енгіземіз",
+      copied: "Roadmap көшірілді",
+      saved: "Roadmap төмендегі формаға қосылды"
+    },
     live: {
       title: "Live Automation Preview",
       text: "Жүйе енгізілгеннен кейін қалай жұмыс істейді: алғашқы хабарламадан CRM және follow-up-қа дейін.",
@@ -207,7 +221,8 @@ const content = {
       industries: ["Beauty / wellness", "Education", "E-commerce", "B2B service"],
       pains: ["WhatsApp chaos", "No CRM", "Slow response", "No analytics"],
       recommended: "Recommended system",
-      roadmap: "Get implementation roadmap"
+      roadmap: "Send this roadmap to us",
+      copy: "Copy roadmap"
     },
     builder: {
       title: "Build Your System",
@@ -257,6 +272,12 @@ const content = {
         "Week 4 — Telegram alerts + Dashboard",
         "Week 5 — Testing & Launch"
       ]
+    },
+    plan: {
+      title: "Your personal plan",
+      modules: "What we implement",
+      copied: "Roadmap copied",
+      saved: "Roadmap added to the form below"
     },
     live: {
       title: "Live Automation Preview",
@@ -321,6 +342,7 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
   const [industry, setIndustry] = useState<string>(t.scanner.industries[0]);
   const [pain, setPain] = useState<string>(t.scanner.pains[0]);
   const [selectedModules, setSelectedModules] = useState<string[]>(["ai", "crm", "telegram"]);
+  const [actionStatus, setActionStatus] = useState("");
 
   const modules = t.builder.modules as readonly Module[];
   const pains = [...t.scanner.pains] as readonly string[];
@@ -336,10 +358,51 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
     return labels.length ? labels.join(" + ") : "Diagnostic roadmap";
   }, [selected]);
 
+  const roadmapText = useMemo(
+    () =>
+      [
+        t.plan.title,
+        "",
+        `${t.scanner.industryLabel}: ${industry}`,
+        `${t.impact.problem}: ${pain}`,
+        `${t.impact.system}: ${recommended}`,
+        `${t.impact.impact}: ${t.impact.text}`,
+        "",
+        `${t.plan.modules}:`,
+        ...selected.map((module, index) => `${index + 1}. ${module.label}`),
+        "",
+        `${t.roadmap.title}:`,
+        ...t.roadmap.items
+      ].join("\n"),
+    [industry, pain, recommended, selected, t]
+  );
+
   function toggleModule(id: string) {
     setSelectedModules((current) =>
       current.includes(id) ? current.filter((item) => item !== id) : [...current, id]
     );
+  }
+
+  function sendRoadmapToForm() {
+    const roadmap = {
+      locale,
+      industry,
+      pain,
+      recommended,
+      modules: selected.map((module) => module.label),
+      roadmap: t.roadmap.items,
+      message: roadmapText
+    };
+
+    window.localStorage.setItem("flowtech-roadmap", JSON.stringify(roadmap));
+    window.dispatchEvent(new CustomEvent("flowtech-roadmap", { detail: roadmap }));
+    setActionStatus(t.plan.saved);
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  async function copyRoadmap() {
+    await navigator.clipboard.writeText(roadmapText);
+    setActionStatus(t.plan.copied);
   }
 
   return (
@@ -411,12 +474,23 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
               </p>
               <h4 className="mt-3 text-2xl font-semibold">{recommended}</h4>
               <p className="mt-3 text-sm text-slate-400">{industry} / {pain}</p>
-              <button
-                type="button"
-                className="mt-5 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:bg-slate-200"
-              >
-                {t.scanner.roadmap}
-              </button>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="button"
+                  onClick={sendRoadmapToForm}
+                  className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:bg-slate-200"
+                >
+                  {t.scanner.roadmap}
+                </button>
+                <button
+                  type="button"
+                  onClick={copyRoadmap}
+                  className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                >
+                  {t.scanner.copy}
+                </button>
+              </div>
+              {actionStatus ? <p className="mt-3 text-sm text-emerald-300">{actionStatus}</p> : null}
             </div>
 
             <div className="mt-4 grid gap-4 xl:grid-cols-2">
@@ -436,10 +510,14 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
               </div>
 
               <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
+                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+                  {t.plan.title}
+                </p>
                 <h4 className="text-lg font-semibold">{t.impact.title}</h4>
                 <ImpactLine label={t.impact.problem} value={pain} />
                 <ImpactLine label={t.impact.system} value={recommended} />
                 <ImpactLine label={t.impact.impact} value={t.impact.text} />
+                <ImpactLine label={t.plan.modules} value={receiveText} />
               </div>
             </div>
           </div>

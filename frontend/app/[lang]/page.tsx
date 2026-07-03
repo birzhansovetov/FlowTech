@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { dictionaries, getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
 import { Contact } from "@/components/Contact";
 import { CTA } from "@/components/CTA";
+import { ClientJourneyFlow } from "@/components/ClientJourneyFlow";
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -11,6 +12,7 @@ import { InteractiveSystems } from "@/components/InteractiveSystems";
 import { Process } from "@/components/Process";
 import { Projects } from "@/components/Projects";
 import { Services } from "@/components/Services";
+import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { Technology } from "@/components/Technology";
 
 type Params = {
@@ -46,6 +48,7 @@ export default function LocalizedHome({ params }: Params) {
       <Header locale={locale} dict={dict} currentPath={`/${locale}`} />
       <Hero locale={locale} dict={dict} />
       <InteractiveSystems locale={locale} />
+      <ClientJourneyFlow locale={locale} />
       <Services locale={locale} dict={dict} />
       <Industries dict={dict} />
       <Technology dict={dict} />
@@ -55,6 +58,7 @@ export default function LocalizedHome({ params }: Params) {
       <FAQ dict={dict} />
       <Contact dict={dict} />
       <Footer locale={locale} dict={dict} />
+      <StickyMobileCTA locale={locale} />
     </main>
   );
 }

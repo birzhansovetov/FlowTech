@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Dictionary } from "@/lib/i18n";
@@ -29,10 +29,40 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors }
   } = useForm<FormValues>({
     resolver: zodResolver(schema)
   });
+
+  useEffect(() => {
+    function applyRoadmap(raw: string | null) {
+      if (!raw) return;
+
+      try {
+        const roadmap = JSON.parse(raw) as { message?: string };
+        if (roadmap.message) {
+          setValue("message", roadmap.message, { shouldValidate: true });
+          setValue("project_type", projectTypes[0], { shouldValidate: true });
+        }
+      } catch {
+        // Ignore malformed localStorage data.
+      }
+    }
+
+    applyRoadmap(window.localStorage.getItem("flowtech-roadmap"));
+
+    function handleRoadmap(event: Event) {
+      const customEvent = event as CustomEvent<{ message?: string }>;
+      if (customEvent.detail?.message) {
+        setValue("message", customEvent.detail.message, { shouldValidate: true });
+        setValue("project_type", projectTypes[0], { shouldValidate: true });
+      }
+    }
+
+    window.addEventListener("flowtech-roadmap", handleRoadmap);
+    return () => window.removeEventListener("flowtech-roadmap", handleRoadmap);
+  }, [projectTypes, setValue]);
 
   async function onSubmit(values: FormValues) {
     setStatus("loading");
