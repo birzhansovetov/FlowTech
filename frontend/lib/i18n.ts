@@ -50,9 +50,9 @@ const baseDictionaries = {
     },
     hero: {
       badge: "AI • Web • Mobile • Automation",
-      title: "Находим, где бизнес теряет время, и превращаем это в AI-системы",
+      title: "Бизнесу нужен не просто сайт. Ему нужна интеллектуальная система",
       text:
-        "Мы не просто делаем сайты. Мы строим системы, которые принимают заявки, квалифицируют клиентов, автоматизируют ручную работу и двигают бизнес вперед.",
+        "FlowTech находит узкие места в процессах и собирает AI-powered решения: от первого касания клиента до CRM, уведомлений и dashboard.",
       consultButton: "Получить консультацию",
       projectsButton: "Смотреть проекты",
       features: ["MVP", "AI-интеграции", "Поддержка"],
@@ -367,9 +367,9 @@ const baseDictionaries = {
     },
     hero: {
       badge: "AI • Web • Mobile • Automation",
-      title: "We find where business loses time and turn it into AI systems",
+      title: "Your business does not need another website. It needs an intelligent system",
       text:
-        "We do not build just websites. We build systems that capture leads, qualify clients, automate manual work and move the business forward.",
+        "FlowTech finds bottlenecks in your process and builds AI-powered solutions: from first client touch to CRM, notifications and dashboard.",
       consultButton: "Get consultation",
       projectsButton: "View projects",
       features: ["MVP", "AI integrations", "Support"],
@@ -687,9 +687,9 @@ const kkDictionary = {
   },
   hero: {
     ...baseDictionaries.ru.hero,
-    title: "Бизнес уақытты қайда жоғалтатынын тауып, оны AI-жүйеге айналдырамыз",
+    title: "Бизнеске жай сайт емес. Интеллектуалды жүйе керек",
     text:
-      "Біз жай сайт жасамаймыз. Біз өтінім қабылдайтын, клиенттерді квалификациялайтын, қол жұмысын автоматтандыратын және бизнесті алға жылжытатын жүйелер құрамыз.",
+      "FlowTech процестегі тар орындарды тауып, алғашқы клиент байланысынан CRM, хабарламалар және dashboard-қа дейін AI-powered шешімдер құрады.",
     consultButton: "Кеңес алу",
     projectsButton: "Жобаларды көру",
     features: ["MVP", "AI-интеграциялар", "Қолдау"],

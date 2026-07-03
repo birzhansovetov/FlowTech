@@ -1,6 +1,15 @@
 "use client";
 
-import { Bot, CheckCircle2, Gauge, LayoutDashboard, MessageSquareText, Workflow } from "lucide-react";
+import {
+  Activity,
+  Bot,
+  CheckCircle2,
+  Gauge,
+  Layers3,
+  MessageSquareText,
+  Route,
+  Workflow
+} from "lucide-react";
 import { useMemo, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 
@@ -57,6 +66,45 @@ const content = {
       notYet: "Пока рано",
       readyItems: ["AI first-line support", "CRM automation", "analytics dashboard"],
       notYetItems: ["full custom mobile app без проверки спроса"]
+    },
+    impact: {
+      title: "Problem → System → Impact",
+      problem: "Problem",
+      system: "System",
+      impact: "Impact",
+      text: "Заявки сохраняются в одном месте, менеджер быстрее реагирует, владелец видит статусы и аналитику."
+    },
+    roadmap: {
+      title: "Implementation Roadmap",
+      items: [
+        "Week 1 — диагностика процесса",
+        "Week 2 — UX/UI и архитектура",
+        "Week 3 — AI Assistant + CRM",
+        "Week 4 — Telegram alerts + Dashboard",
+        "Week 5 — Testing & Launch"
+      ]
+    },
+    live: {
+      title: "Live Automation Preview",
+      text: "Как система работает после внедрения: от первого сообщения до CRM и follow-up.",
+      events: [
+        "10:24 — New lead from WhatsApp",
+        "10:24 — AI classified: Hot lead",
+        "10:25 — CRM status: New",
+        "10:25 — Manager notified in Telegram",
+        "10:26 — Follow-up scheduled"
+      ]
+    },
+    os: {
+      title: "FlowTech OS",
+      text: "Методология, которая превращает отдельные инструменты в связанную AI-powered систему.",
+      modules: [
+        ["Lead OS", "заявки, CRM, уведомления"],
+        ["AI OS", "ассистенты, FAQ, классификация"],
+        ["Ops OS", "автоматизация ручных процессов"],
+        ["Data OS", "аналитика, dashboard, отчеты"],
+        ["MVP OS", "запуск новых продуктов"]
+      ]
     }
   },
   kk: {
@@ -105,6 +153,45 @@ const content = {
       notYet: "Әзірге ерте",
       readyItems: ["AI first-line support", "CRM automation", "analytics dashboard"],
       notYetItems: ["сұранысты тексермей full custom mobile app жасау"]
+    },
+    impact: {
+      title: "Problem → System → Impact",
+      problem: "Мәселе",
+      system: "Жүйе",
+      impact: "Әсер",
+      text: "Өтінімдер бір жерде сақталады, менеджер тезірек жауап береді, иесі статустар мен аналитиканы көреді."
+    },
+    roadmap: {
+      title: "Implementation Roadmap",
+      items: [
+        "Week 1 — процесті диагностикалау",
+        "Week 2 — UX/UI және архитектура",
+        "Week 3 — AI Assistant + CRM",
+        "Week 4 — Telegram alerts + Dashboard",
+        "Week 5 — Testing & Launch"
+      ]
+    },
+    live: {
+      title: "Live Automation Preview",
+      text: "Жүйе енгізілгеннен кейін қалай жұмыс істейді: алғашқы хабарламадан CRM және follow-up-қа дейін.",
+      events: [
+        "10:24 — New lead from WhatsApp",
+        "10:24 — AI classified: Hot lead",
+        "10:25 — CRM status: New",
+        "10:25 — Manager notified in Telegram",
+        "10:26 — Follow-up scheduled"
+      ]
+    },
+    os: {
+      title: "FlowTech OS",
+      text: "Жеке құралдарды байланысқан AI-powered жүйеге айналдыратын әдістеме.",
+      modules: [
+        ["Lead OS", "өтінімдер, CRM, хабарламалар"],
+        ["AI OS", "ассистенттер, FAQ, классификация"],
+        ["Ops OS", "қол процестерін автоматтандыру"],
+        ["Data OS", "аналитика, dashboard, есептер"],
+        ["MVP OS", "жаңа өнімдерді іске қосу"]
+      ]
     }
   },
   en: {
@@ -153,6 +240,45 @@ const content = {
       notYet: "Not yet",
       readyItems: ["AI first-line support", "CRM automation", "analytics dashboard"],
       notYetItems: ["full custom mobile app before demand validation"]
+    },
+    impact: {
+      title: "Problem → System → Impact",
+      problem: "Problem",
+      system: "System",
+      impact: "Impact",
+      text: "Leads are saved in one place, managers respond faster, and owners see statuses and analytics."
+    },
+    roadmap: {
+      title: "Implementation Roadmap",
+      items: [
+        "Week 1 — process diagnostic",
+        "Week 2 — UX/UI and architecture",
+        "Week 3 — AI Assistant + CRM",
+        "Week 4 — Telegram alerts + Dashboard",
+        "Week 5 — Testing & Launch"
+      ]
+    },
+    live: {
+      title: "Live Automation Preview",
+      text: "How the system works after launch: from first message to CRM and follow-up.",
+      events: [
+        "10:24 — New lead from WhatsApp",
+        "10:24 — AI classified: Hot lead",
+        "10:25 — CRM status: New",
+        "10:25 — Manager notified in Telegram",
+        "10:26 — Follow-up scheduled"
+      ]
+    },
+    os: {
+      title: "FlowTech OS",
+      text: "A branded method that turns separate tools into one connected AI-powered system.",
+      modules: [
+        ["Lead OS", "leads, CRM, notifications"],
+        ["AI OS", "assistants, FAQ, classification"],
+        ["Ops OS", "manual process automation"],
+        ["Data OS", "analytics, dashboard, reports"],
+        ["MVP OS", "new product launches"]
+      ]
     }
   }
 } as const;
@@ -292,6 +418,30 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
                 {t.scanner.roadmap}
               </button>
             </div>
+
+            <div className="mt-4 grid gap-4 xl:grid-cols-2">
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
+                <div className="mb-4 flex items-center gap-3">
+                  <Route className="text-accent" size={22} />
+                  <h4 className="text-lg font-semibold">{t.roadmap.title}</h4>
+                </div>
+                <div className="grid gap-3">
+                  {t.roadmap.items.map((item) => (
+                    <div key={item} className="flex gap-3 text-sm leading-6 text-slate-300">
+                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
+                <h4 className="text-lg font-semibold">{t.impact.title}</h4>
+                <ImpactLine label={t.impact.problem} value={pain} />
+                <ImpactLine label={t.impact.system} value={recommended} />
+                <ImpactLine label={t.impact.impact} value={t.impact.text} />
+              </div>
+            </div>
           </div>
 
           <div className="glass-card rounded-[2rem] p-6">
@@ -377,6 +527,53 @@ export function InteractiveSystems({ locale }: { locale: Locale }) {
             </div>
           </div>
         </div>
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
+          <div className="glass-card overflow-hidden rounded-[2rem] p-6">
+            <div className="mb-6 flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-accent">
+                <Activity size={24} />
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold">{t.live.title}</h3>
+                <p className="mt-2 leading-7 text-slate-300">{t.live.text}</p>
+              </div>
+            </div>
+
+            <div className="rounded-[1.5rem] border border-white/10 bg-[#08111f] p-5 font-mono text-sm">
+              {t.live.events.map((event, index) => (
+                <div
+                  key={event}
+                  className="flex items-start gap-3 border-b border-white/10 py-3 last:border-b-0"
+                >
+                  <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${index < 2 ? "bg-accent" : "bg-emerald-300"}`} />
+                  <span className="text-slate-300">{event}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="glass-card rounded-[2rem] p-6">
+            <div className="mb-6 flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-accent">
+                <Layers3 size={24} />
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold">{t.os.title}</h3>
+                <p className="mt-2 leading-7 text-slate-300">{t.os.text}</p>
+              </div>
+            </div>
+
+            <div className="grid gap-3">
+              {t.os.modules.map(([name, description]) => (
+                <div key={name} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                  <p className="font-semibold text-white">{name}</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-300">{description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -387,6 +584,15 @@ function InfoLine({ label, value }: { label: string; value: string }) {
     <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
       <p className="text-slate-400">{label}</p>
       <p className="mt-1 font-semibold">{value}</p>
+    </div>
+  );
+}
+
+function ImpactLine({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="mt-4 rounded-2xl bg-white/[0.05] p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{label}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{value}</p>
     </div>
   );
 }
