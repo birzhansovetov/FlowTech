@@ -60,6 +60,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="ru" className={inter.variable} data-theme="dark" suppressHydrationWarning>
       <body className="noise font-sans antialiased">
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <div className="system-rail system-rail-left" aria-hidden="true">
+          <span>FlowTech OS</span>
+        </div>
+        <div className="system-rail system-rail-right" aria-hidden="true">
+          <span>AI Command</span>
+        </div>
         {children}
       </body>
     </html>
